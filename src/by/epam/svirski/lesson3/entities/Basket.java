@@ -28,6 +28,13 @@ public class Basket {
 		return basket;
 	}
 
+	public static void clearBasket() throws BasketException {
+		if (basket == null) {
+			throw new BasketException("no basket exists");
+		}
+		basket = null;
+	}
+
 	public double getMaxWeight() {
 		return maxWeight;
 	}
