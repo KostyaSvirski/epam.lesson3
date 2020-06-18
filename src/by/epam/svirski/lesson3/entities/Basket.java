@@ -20,6 +20,14 @@ public class Basket {
 		this.currentQuantityOfBalls = new ArrayList<Ball>();
 	}
 
+	public static boolean isBasketExist() {
+		if (basket != null) {
+			return true;
+		} else {
+			return false;			
+		}
+	}
+
 	public static Basket createBasket(int maxCapacity, double maxWeight) throws BasketException { // singleton basket
 		if (basket != null) {
 			throw new BasketException("basket is alredy exist");

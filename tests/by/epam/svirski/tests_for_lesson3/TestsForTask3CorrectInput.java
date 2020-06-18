@@ -13,7 +13,7 @@ public class TestsForTask3CorrectInput {
 
 	public Basket basket;
 	public static final int CAPACITY_OF_BASKET = 5;
-	public static final double MAX_WEIGHT_OF_BASKET = 60;
+	public static final double MAX_WEIGHT_OF_BASKET = 100;
 	
 
 	@BeforeSuite
@@ -51,7 +51,7 @@ public class TestsForTask3CorrectInput {
 	
 	@Test(groups = {"correctInput"})
 	public void testCalculatingOfBlueBalls() {
-		double actual = ActionsOnBasket.getQuantityOfBlueBalls(basket);
+		double actual = ActionsOnBasket.getQuantityOfBalls(basket, "blue");
 		double expected = 3;
 		assertEquals(actual, expected);
 	}
