@@ -58,7 +58,7 @@ public class TestsForTask3IncorrectInput {
 	@Test(groups = { "input" })
 	public void testCalculatingOfCollorBalls() {
 		double actual = ActionsOnBasket.getQuantityOfBalls(basket, "blue");
-		double expected = 3;
+		double expected = 2;
 		assertEquals(actual, expected);
 	}
 
@@ -103,9 +103,9 @@ public class TestsForTask3IncorrectInput {
 	}
 
 	@Test(groups = { "overweightBasket" }, expectedExceptionsMessageRegExp = "basket weight limit reached")
-	public void testOverweightOfVasket() {
+	public void testOverweightOfBasket() {
 		try {
-			ActionsOnBasket.addBallToBasket(basket, Collors.GREEN, 100);
+			ActionsOnBasket.addBallToBasket(basket, Collors.GREEN, 100); //FIXME
 			fail();
 		} catch (ProjectException e) {
 			assertEquals(e.getMessage(), "basket weight limit reached");
