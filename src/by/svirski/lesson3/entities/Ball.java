@@ -1,18 +1,18 @@
-package by.epam.svirski.lesson3.entities;
+package by.svirski.lesson3.entities;
 
 public class Ball {
 	
-	private String collor;
+	private Collors collor;
 	private double weightOfBall;
 	
-	public Ball(String collor, double weightOfBall) {
+	public Ball(Collors collor, double weightOfBall) {
 		super();
 		this.collor = collor;
 		this.weightOfBall = weightOfBall;
 	}
 
 	public String getCollor() {
-		return collor;
+		return collor.getCollor();
 	}
 
 	public double getWeightOfBall() {

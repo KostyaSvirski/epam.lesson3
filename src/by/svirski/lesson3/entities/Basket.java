@@ -1,22 +1,20 @@
-package by.epam.svirski.lesson3.entities;
+package by.svirski.lesson3.entities;
 
 import java.util.ArrayList;
 
-import by.epam.svirski.lesson3.utils.BasketException;
+import by.svirski.lesson3.utils.ProjectException;
 
 public class Basket {
 
 	private static Basket basket;
-	private int maxCapacity;
-	private double maxWeight;
+	private final int maxCapacity;
+	private final double maxWeight;
 
-	private double weightOfBasket;
 	private ArrayList<Ball> currentQuantityOfBalls;
 
 	private Basket(int maxCapacity, double maxWeight) {
 		this.maxCapacity = maxCapacity;
 		this.maxWeight = maxWeight;
-		this.weightOfBasket = 0;
 		this.currentQuantityOfBalls = new ArrayList<Ball>();
 	}
 
@@ -24,21 +22,21 @@ public class Basket {
 		if (basket != null) {
 			return true;
 		} else {
-			return false;			
+			return false;
 		}
 	}
 
-	public static Basket createBasket(int maxCapacity, double maxWeight) throws BasketException { // singleton basket
+	public static Basket createBasket(int maxCapacity, double maxWeight) throws ProjectException { // singleton basket
 		if (basket != null) {
-			throw new BasketException("basket is alredy exist");
+			throw new ProjectException("basket is alredy exist");
 		}
 		basket = new Basket(maxCapacity, maxWeight);
 		return basket;
 	}
 
-	public static void clearBasket() throws BasketException {
+	public static void clearBasket() throws ProjectException {
 		if (basket == null) {
-			throw new BasketException("no basket exists");
+			throw new ProjectException("no basket exists");
 		}
 		basket = null;
 	}
@@ -49,14 +47,6 @@ public class Basket {
 
 	public int getMaxCapacity() {
 		return maxCapacity;
-	}
-
-	public double getWeightOfBasket() {
-		return weightOfBasket;
-	}
-
-	public void overrideWeightOfBasket(Ball newBall) {
-		this.weightOfBasket += newBall.getWeightOfBall();
 	}
 
 	public ArrayList<Ball> getCurrentQuantityOfBalls() {
@@ -74,7 +64,7 @@ public class Basket {
 		result = prime * result + ((currentQuantityOfBalls == null) ? 0 : currentQuantityOfBalls.hashCode());
 		result = prime * result + maxCapacity;
 		long temp;
-		temp = Double.doubleToLongBits(weightOfBasket);
+		temp = Double.doubleToLongBits(maxWeight);
 		result = prime * result + (int) (temp ^ (temp >>> 32));
 		return result;
 	}
@@ -82,24 +72,24 @@ public class Basket {
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj) {
-			return true;
+			return true;			
 		}
 		if (!(obj instanceof Basket)) {
-			return false;
+			return false;			
 		}
 		Basket other = (Basket) obj;
 		if (currentQuantityOfBalls == null) {
 			if (other.currentQuantityOfBalls != null) {
-				return false;
+				return false;				
 			}
 		} else if (!currentQuantityOfBalls.equals(other.currentQuantityOfBalls)) {
-			return false;
+			return false;			
 		}
 		if (maxCapacity != other.maxCapacity) {
-			return false;
+			return false;			
 		}
-		if (Double.doubleToLongBits(weightOfBasket) != Double.doubleToLongBits(other.weightOfBasket)) {
-			return false;
+		if (Double.doubleToLongBits(maxWeight) != Double.doubleToLongBits(other.maxWeight)) {
+			return false;			
 		}
 		return true;
 	}
@@ -109,12 +99,14 @@ public class Basket {
 		StringBuilder builder = new StringBuilder();
 		builder.append("Basket [maxCapacity=");
 		builder.append(maxCapacity);
-		builder.append(", weightOfBasket=");
-		builder.append(weightOfBasket);
+		builder.append(", maxWeight=");
+		builder.append(maxWeight);
 		builder.append(", currentQuantityOfBalls=");
 		builder.append(currentQuantityOfBalls);
 		builder.append("]");
 		return builder.toString();
 	}
+
+	
 
 }
